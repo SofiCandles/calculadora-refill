@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calculá tu Refill | Sofi Candles & Home</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Advent+Pro:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sofi-bg: #ece8e4;
+      --sofi-card: #f8f6f3;
+      --sofi-white: #ffffff;
+      --sofi-text: #292522;
+      --sofi-muted: #7c716a;
+      --sofi-line: #d9d1cb;
+      --sofi-taupe: #a88f80;
+      --sofi-taupe-dark: #746359;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--sofi-bg);
+      color: var(--sofi-text);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 36px 18px 55px;
+    }
+
+    /* LOGO */
+
+    .brand {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sofi-logo {
+      display: inline-block;
+      text-align: center;
+      color: var(--sofi-text);
+    }
+
+    .sofi-grid {
+      display: grid;
+      grid-template-columns: 42px 42px;
+      grid-template-rows: 37px 37px;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Abhaya Libre', Georgia, serif;
+      font-weight: 800;
+      font-size: 53px;
+      line-height: 0.7;
+      margin: 0 auto;
+    }
+
+    .sofi-grid span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sofi-submark {
+      font-family: 'Advent Pro', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      white-space: nowrap;
+    }
+
+    /* HERO */
+
+    .hero {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      font-family: 'Abhaya Libre', Georgia, serif;
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 1;
+      margin: 0 0 13px;
+    }
+
+    .hero p {
+      max-width: 500px;
+      margin: 0 auto;
+      color: var(--sofi-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* BENEFICIOS */
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 25px 0;
+    }
+
+    .benefit {
+      text-align: center;
+      padding: 14px 8px;
+      font-size: 10px;
+      line-height: 1.45;
+      color: var(--sofi-muted);
+    }
+
+    .benefit-icon {
+      display: block;
+      color: var(--sofi-taupe-dark);
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    /* AVISO TANDIL */
+
+    .tandil-notice {
+      text-align: center;
+      padding: 15px 18px;
+      margin: 0 0 20px;
+      background: rgba(255,255,255,.42);
+      border: 1px solid rgba(168,143,128,.28);
+      border-radius: 14px;
+      font-size: 11px;
+      line-height: 1.65;
+      color: var(--sofi-muted);
+    }
+
+    .tandil-notice strong {
+      color: var(--sofi-text);
+      font-weight: 600;
+    }
+
+    /* CARD */
+
+    .card {
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.75);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 8px 30px rgba(74,60,51,.05);
+    }
+
+    .section-label {
+      display: block;
+      margin-bottom: 13px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--sofi-muted);
+    }
+
+    /* OPCIONES */
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--sofi-line);
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .option:last-of-type {
+      border-bottom: none;
+    }
+
+    .option input {
+      accent-color: var(--sofi-taupe-dark);
+    }
+
+    /* CAMPOS */
+
+    .fields {
+      margin-top: 23px;
+      padding-top: 20px;
+      border-top: 1px solid var(--sofi-line);
+    }
+
+    .field-group {
+      display: none;
+    }
+
+    .field-group.active {
+      display: block;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 11px;
+      color: var(--sofi-muted);
+    }
+
+    input[type="number"] {
+      width: 100%;
+      border: 1px solid var(--sofi-line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.7);
+      padding: 14px;
+      color: var(--sofi-text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input[type="number"]:focus {
+      border-color: var(--sofi-taupe);
+      background: var(--sofi-white);
+    }
+
+    .helper {
+      display: block;
+      margin-top: 6px;
+      color: var(--sofi-muted);
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    /* BOTÓN CALCULAR */
+
+    .calculate {
+      width: 100%;
+      margin-top: 23px;
+      padding: 17px 20px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--sofi-taupe);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      cursor: pointer;
+    }
+
+    .calculate:hover {
+      background: var(--sofi-taupe-dark);
+    }
+
+    .error {
+      display: none;
+      margin-top: 13px;
+      text-align: center;
+      color: #8a5d56;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    /* RESULTADO */
+
+    .result {
+      display: none;
+      margin-top: 22px;
+      text-align: center;
+      background: var(--sofi-card);
+      border-radius: 22px;
+      padding: 30px 22px 25px;
+      box-shadow: 0 8px 30px rgba(74,60,51,.05);
+    }
+
+    .result.visible {
+      display: block;
+    }
+
+    .result-eyebrow {
+      font-family: 'Advent Pro', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--sofi-muted);
+    }
+
+    .result h2 {
+      font-family: 'Abhaya Libre', Georgia, serif;
+      font-size: 27px;
+      font-weight: 600;
+      margin: 7px 0 8px;
+    }
+
+    .price {
+      font-family: 'Abhaya Libre', Georgia, serif;
+      font-size: 70px;
+      line-height: 1;
+      font-weight: 700;
+      margin: 10px 0 18px;
+    }
+
+    .result-details {
+      max-width: 330px;
+      margin: 0 auto 22px;
+      border-top: 1px solid var(--sofi-line);
+    }
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 10px 2px;
+      border-bottom: 1px solid var(--sofi-line);
+      font-size: 10px;
+    }
+
+    .detail span:first-child {
+      color: var(--sofi-muted);
+    }
+
+    .detail span:last-child {
+      font-weight: 500;
+      text-align: right;
+    }
+
+    /* WHATSAPP */
+
+    .whatsapp {
+      display: block;
+      width: 100%;
+      padding: 17px 18px;
+      background: var(--sofi-text);
+      color: white;
+      text-decoration: none;
+      border-radius: 13px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.25px;
+    }
+
+    /* AVISO */
+
+    .notice {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(236,232,228,.7);
+      color: var(--sofi-muted);
+      font-size: 10px;
+      line-height: 1.65;
+    }
+
+    .notice strong {
+      color: var(--sofi-text);
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      text-align: center;
+      margin-top: 35px;
+    }
+
+    .footer-line {
+      width: 35px;
+      height: 1px;
+      background: var(--sofi-taupe);
+      margin: 0 auto 16px;
+    }
+
+    .footer-text {
+      font-family: 'Advent Pro', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 1.8px;
+      line-height: 1.8;
+    }
+
+    .heart {
+      margin-top: 7px;
+      font-size: 15px;
+      color: var(--sofi-taupe);
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 27px 14px 45px;
+      }
+
+      .sofi-grid {
+        grid-template-columns: 38px 38px;
+        grid-template-rows: 34px 34px;
+        font-size: 48px;
+      }
+
+      .sofi-submark {
+        font-size: 12px;
+        margin-top: 9px;
+      }
+
+      .hero h1 {
+        font-size: 37px;
+      }
+
+      .hero p {
+        font-size: 12px;
+      }
+
+      .card {
+        padding: 20px 17px;
+      }
+
+      .benefits {
+        gap: 2px;
+      }
+
+      .benefit {
+        padding: 12px 4px;
+        font-size: 9px;
+      }
+
+      .price {
+        font-size: 58px;
+      }
+
+      .result {
+        padding: 27px 17px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <header class="brand">
+      <div class="sofi-logo">
+        <div class="sofi-grid">
+          <span>S</span>
+          <span>O</span>
+          <span>F</span>
+          <span>I</span>
+        </div>
+
+        <div class="sofi-submark">
+          Candles &amp; Home
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Calculá tu Refill</h1>
+      <p>
+        Dale una nueva vida a tu vela.
+        Ingresá los datos de tu recipiente y conocé
+        el valor estimado para volver a llenarlo.
+      </p>
+    </section>
+
+    <section class="benefits">
+      <div class="benefit">
+        <span class="benefit-icon">♧</span>
+        Misma calidad
+      </div>
+
+      <div class="benefit">
+        <span class="benefit-icon">♡</span>
+        Tus recipientes<br>de siempre
+      </div>
+
+      <div class="benefit">
+        <span class="benefit-icon">♻</span>
+        Una elección<br>más consciente
+      </div>
+    </section>
+
+    <div class="tandil-notice">
+      📍 <strong>Servicio disponible únicamente en Tandil.</strong><br>
+      Los recipientes para Refill se reciben y retiran
+      exclusivamente en nuestro local de Tandil.
+    </div>
+
+    <section class="card">
+
+      <span class="section-label">Elegí una opción</span>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="tipo"
+          value="gramos"
+          id="tipoGramos"
+          checked
+        >
+        Sé cuántos gramos contiene
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="tipo"
+          value="cilindrico"
+          id="tipoCilindrico"
+        >
+        Recipiente recto (cilíndrico)
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="tipo"
+          value="conico"
+          id="tipoConico"
+        >
+        Recipiente cónico
+      </label>
+
+      <div class="fields">
+
+        <!-- GRAMOS -->
+
+        <div class="field-group active" id="grupoGramos">
+
+          <div class="field">
+            <label for="gramos">
+              ¿Cuántos gramos contiene?
+            </label>
+
+            <input
+              type="number"
+              id="gramos"
+              min="1"
+              inputmode="decimal"
+              placeholder="Ej: 250"
+            >
+          </div>
+
+          <div class="field">
+            <label for="diametroGramos">
+              Diámetro del recipiente en cm (opcional)
+            </label>
+
+            <input
+              type="number"
+              id="diametroGramos"
+              min="0"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="Ej: 8,5"
+            >
+
+            <span class="helper">
+              Nos ayuda a estimar si tu vela necesita una o dos mechas.
+            </span>
+          </div>
+
+        </div>
+
+        <!-- CILÍNDRICO -->
+
+        <div class="field-group" id="grupoCilindrico">
+
+          <div class="field">
+            <label for="diametroCilindrico">
+              Diámetro interior en cm
+            </label>
+
+            <input
+              type="number"
+              id="diametroCilindrico"
+              min="0"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="Ej: 8,5"
+            >
+          </div>
+
+          <div class="field">
+            <label for="alturaCilindrico">
+              Altura de llenado en cm
+            </label>
+
+            <input
+              type="number"
+              id="alturaCilindrico"
+              min="0"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="Ej: 8,5"
+            >
+          </div>
+
+        </div>
+
+        <!-- CÓNICO -->
+
+        <div class="field-group" id="grupoConico">
+
+          <div class="field">
+            <label for="baseConico">
+              Diámetro interior de la base en cm
+            </label>
+
+            <input
+              type="number"
+              id="baseConico"
+              min="0"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="Ej: 11,5"
+            >
+          </div>
+
+          <div class="field">
+            <label for="bocaConico">
+              Diámetro interior de la boca en cm
+            </label>
+
+            <input
+              type="number"
+              id="bocaConico"
+              min="0"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="Ej: 6,5"
+            >
+          </div>
+
+          <div class="field">
+            <label for="alturaConico">
+              Altura de llenado en cm
+            </label>
+
+            <input
+              type="number"
+              id="alturaConico"
+              min="0"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="Ej: 13"
+            >
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="calculate" id="calcular">
+        CALCULAR MI REFILL
+      </button>
+
+      <div class="error" id="error">
+        Revisá los datos ingresados para poder calcular tu Refill.
+      </div>
+
+    </section>
+
+    <!-- RESULTADO -->
+
+    <section class="result" id="resultado">
+
+      <div class="result-eyebrow">
+        SOFI · Candles &amp; Home
+      </div>
+
+      <h2>Tu refill estimado</h2>
+
+      <div class="price" id="precioResultado">
+        $0
+      </div>
+
+      <div class="result-details">
+
+        <div class="detail">
+          <span>Capacidad</span>
+          <span id="gramosResultado">—</span>
+        </div>
+
+        <div class="detail">
+          <span>Incluye</span>
+          <span id="mechasResultado">—</span>
+        </div>
+
+        <div class="detail">
+          <span>Fragancia</span>
+          <span>A elección</span>
+        </div>
+
+      </div>
+
+      <a
+        class="whatsapp"
+        id="whatsapp"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        ♡ &nbsp; QUIERO HACER MI REFILL &nbsp; →
+      </a>
+
+      <div class="notice">
+
+        <strong>
+          Precio válido abonando en efectivo o transferencia.
+        </strong>
+
+        <br><br>
+
+        Tené en cuenta que el valor es estimado.
+        Al recibir tu recipiente vamos a revisarlo para confirmar
+        su capacidad y que sea apto para calor.
+
+        <br><br>
+
+        📍 El servicio de Refill se realiza únicamente
+        en nuestro local de Tandil.
+
+        <br><br>
+
+        ♻ Aceptamos recipientes de cualquier marca.
+
+      </div>
+
+    </section>
+
+    <footer class="footer">
+
+      <div class="footer-line"></div>
+
+      <div class="footer-text">
+        Reduce, reutiliza y recicla
+      </div>
+
+      <div class="heart">♡</div>
+
+    </footer>
+
+  </main>
+
+  <script>
+
+    const PRECIO_GRAMO = 28;
+    const ADICIONAL_SEGUNDA_MECHA = 40;
+
+    /*
+      Factor empírico utilizado para estimar la capacidad
+      de recipientes cilíndricos.
+    */
+    const FACTOR_CILINDRICO = 0.49;
+
+    /*
+      Calibración del recipiente cónico de referencia:
+      base 11.5 cm
+      boca 6.5 cm
+      altura 13 cm
+      capacidad real 400 g
+    */
+    const VOLUMEN_CONO_REFERENCIA =
+      Math.PI *
+      13 / 12 *
+      (
+        Math.pow(11.5, 2) +
+        (11.5 * 6.5) +
+        Math.pow(6.5, 2)
+      );
+
+    const FACTOR_CONICO =
+      400 / VOLUMEN_CONO_REFERENCIA;
+
+
+    /* CAMBIO DE TIPO */
+
+    const radios =
+      document.querySelectorAll('input[name="tipo"]');
+
+    radios.forEach(radio => {
+
+      radio.addEventListener("change", function () {
+
+        document
+          .querySelectorAll(".field-group")
+          .forEach(grupo => {
+            grupo.classList.remove("active");
+          });
+
+        if (this.value === "gramos") {
+          document
+            .getElementById("grupoGramos")
+            .classList.add("active");
+        }
+
+        if (this.value === "cilindrico") {
+          document
+            .getElementById("grupoCilindrico")
+            .classList.add("active");
+        }
+
+        if (this.value === "conico") {
+          document
+            .getElementById("grupoConico")
+            .classList.add("active");
+        }
+
+        document
+          .getElementById("resultado")
+          .classList.remove("visible");
+
+        document
+          .getElementById("error")
+          .style.display = "none";
+
+      });
+
+    });
+
+
+    /* FUNCIONES */
+
+    function redondear100(numero) {
+      return Math.round(numero / 100) * 100;
+    }
+
+    function formatoPrecio(numero) {
+
+      return new Intl.NumberFormat(
+        "es-AR",
+        {
+          style: "currency",
+          currency: "ARS",
+          maximumFractionDigits: 0
+        }
+      ).format(numero);
+
+    }
+
+
+    /* CALCULAR */
+
+    document
+      .getElementById("calcular")
+      .addEventListener("click", calcularRefill);
+
+
+    function calcularRefill() {
+
+      const tipo =
+        document.querySelector(
+          'input[name="tipo"]:checked'
+        ).value;
+
+      let gramos = 0;
+      let diametroMaximo = 0;
+
+
+      /* POR GRAMOS */
+
+      if (tipo === "gramos") {
+
+        gramos =
+          parseFloat(
+            document.getElementById("gramos").value
+          );
+
+        diametroMaximo =
+          parseFloat(
+            document.getElementById("diametroGramos").value
+          ) || 0;
+
+      }
+
+
+      /* CILÍNDRICO */
+
+      if (tipo === "cilindrico") {
+
+        const diametro =
+          parseFloat(
+            document.getElementById(
+              "diametroCilindrico"
+            ).value
+          );
+
+        const altura =
+          parseFloat(
+            document.getElementById(
+              "alturaCilindrico"
+            ).value
+          );
+
+        if (
+          !diametro ||
+          !altura ||
+          diametro <= 0 ||
+          altura <= 0
+        ) {
+          mostrarError();
+          return;
+        }
+
+        const radio = diametro / 2;
+
+        const volumen =
+          Math.PI *
+          Math.pow(radio, 2) *
+          altura;
+
+        gramos =
+          volumen *
+          FACTOR_CILINDRICO;
+
+        diametroMaximo = diametro;
+
+      }
+
+
+      /* CÓNICO */
+
+      if (tipo === "conico") {
+
+        const base =
+          parseFloat(
+            document.getElementById(
+              "baseConico"
+            ).value
+          );
+
+        const boca =
+          parseFloat(
+            document.getElementById(
+              "bocaConico"
+            ).value
+          );
+
+        const altura =
+          parseFloat(
+            document.getElementById(
+              "alturaConico"
+            ).value
+          );
+
+        if (
+          !base ||
+          !boca ||
+          !altura ||
+          base <= 0 ||
+          boca <= 0 ||
+          altura <= 0
+        ) {
+          mostrarError();
+          return;
+        }
+
+        const volumen =
+          Math.PI *
+          altura / 12 *
+          (
+            Math.pow(base, 2) +
+            (base * boca) +
+            Math.pow(boca, 2)
+          );
+
+        gramos =
+          volumen *
+          FACTOR_CONICO;
+
+        diametroMaximo =
+          Math.max(base, boca);
+
+      }
+
+
+      /* VALIDACIÓN */
+
+      if (
+        !gramos ||
+        gramos <= 0 ||
+        !isFinite(gramos)
+      ) {
+        mostrarError();
+        return;
+      }
+
+
+      /* REDONDEO GRAMOS */
+
+      gramos =
+        Math.round(gramos / 5) * 5;
+
+
+      /* PRECIO */
+
+      let precio =
+        redondear100(
+          gramos * PRECIO_GRAMO
+        );
+
+      let cantidadMechas = 1;
+
+      if (diametroMaximo > 9) {
+
+        precio +=
+          ADICIONAL_SEGUNDA_MECHA;
+
+        cantidadMechas = 2;
+
+      }
+
+
+      /* MOSTRAR RESULTADO */
+
+      document.getElementById(
+        "precioResultado"
+      ).textContent =
+        formatoPrecio(precio);
+
+      document.getElementById(
+        "gramosResultado"
+      ).textContent =
+        gramos + " g";
+
+      document.getElementById(
+        "mechasResultado"
+      ).textContent =
+        cantidadMechas === 1
+          ? "1 mecha"
+          : "2 mechas";
+
+
+      /* WHATSAPP */
+
+      const mensaje =
+        "Hola! 🤍 Quiero hacer un refill.\n\n" +
+        "Mi recipiente tiene una capacidad estimada de " +
+        gramos +
+        " g.\n" +
+        "La calculadora me dio un valor aproximado de " +
+        formatoPrecio(precio) +
+        ".\n\n" +
+        "Quisiera coordinar para llevarlo 🕯️";
+
+      const urlWhatsApp =
+        "https://wa.me/5492494682054?text=" +
+        encodeURIComponent(mensaje);
+
+      document
+        .getElementById("whatsapp")
+        .href = urlWhatsApp;
+
+
+      /* MOSTRAR */
+
+      document
+        .getElementById("error")
+        .style.display = "none";
+
+      const resultado =
+        document.getElementById("resultado");
+
+      resultado.classList.add("visible");
+
+      setTimeout(() => {
+
+        resultado.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }, 100);
+
+    }
+
+
+    function mostrarError() {
+
+      document
+        .getElementById("error")
+        .style.display = "block";
+
+      document
+        .getElementById("resultado")
+        .classList.remove("visible");
+
+    }
+
+  </script>
+
+</body>
+</html>
